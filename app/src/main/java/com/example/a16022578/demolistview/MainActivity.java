@@ -2,8 +2,11 @@ package com.example.a16022578.demolistview;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -28,5 +31,21 @@ public class MainActivity extends AppCompatActivity {
         //Link this Activity object, the row.xml layout for each row and the food String array together.
          aa = new FoodAdapter(this, R.layout.row, food);
          lv.setAdapter(aa);
+
+
+         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+             @Override
+             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                 food selectedFood = food.get(position);
+
+                 Toast.makeText(MainActivity.this, selectedFood.getName()
+                                 + " Star: " + selectedFood.isStar(),
+                         Toast.LENGTH_LONG).show();
+             }
+
+         });
+
+
+
     }
 }
